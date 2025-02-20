@@ -12,19 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-
-
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = os.getenv("EMAIL_HOST", "shared35.accountservergroup.com")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", 465))
+EMAIL_HOST = "shared35.accountservergroup.com"
+EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "site@buz-group.com")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_HOST_USER = ""  # Your full email address
+EMAIL_HOST_PASSWORD = ""  # Your email account's password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,17 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-xo0zd%tf*(_y+5x10s_7t8ca-pr1_fm_#n+1syn#-7@r1%is+t'
+SECRET_KEY = 'django-insecure-xo0zd%tf*(_y+5x10s_7t8ca-pr1_fm_#n+1syn#-7@r1%is+t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
-# Безопасность
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'change-this-default-key')
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -162,8 +152,6 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Добавлено для продакшена
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / 'media'
 
